@@ -39,6 +39,8 @@ import HomeScreen from './src/Components/Screen/Home/HomeScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ProfileScreen from './src/Components/Screen/User/ProfileScreen';
 import ChangeScreen from './src/Components/Screen/User/ChangeScreen';
+import ProductScreen from './src/Components/Screen/Home/ProductScreen';
+import WishScreen from './src/Components/Screen/Market/WishScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -112,7 +114,7 @@ const TabNavigator = () => {
       }}>
       <Tab.Screen name={'Home'} component={HomeScreen} />
       <Tab.Screen name={'Pembelian'} component={HomeScreen} />
-      <Tab.Screen name={'Wishlist'} component={HomeScreen} />
+      <Tab.Screen name={'Wishlist'} component={WishScreen} />
       <Tab.Screen name={'Account'} component={ProfileScreen} />
     </Tab.Navigator>
   );
@@ -139,6 +141,8 @@ const MenuStack = () => {
         component={TabNavigator}
       />
       <Stack.Screen name="ChangeScreen" component={ChangeScreen} />
+      <Stack.Screen name="Product" component={ProductScreen} />
+      {/* <Stack.Screen name="Wish" component/> */}
     </Stack.Navigator>
   );
 };

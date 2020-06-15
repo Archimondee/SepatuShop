@@ -16,7 +16,7 @@ const HomeScreen = () => {
   const [nama, useNama] = useState('');
   const [username, useUsername] = useState('');
   const [data, useData] = useState([]);
-  //const navigation = useNavigation();
+  const navigation = useNavigation();
   useEffect(() => {
     _getItems();
     _getData();
@@ -258,25 +258,25 @@ const HomeScreen = () => {
                         </View>
                         <View style={{flex: 0.3}}>
                           <TouchableOpacity
-                            // onPress={() =>
-                            //   navigation.navigate('Product', {
-                            //     id_barang: items.id_barang,
-                            //     nama_barang: items.nama_barang,
-                            //     foto1: items.foto1,
-                            //     tipe1: items.tipe1,
-                            //     foto2: items.foto2,
-                            //     tipe2: items.tipe2,
-                            //     foto3: items.foto3,
-                            //     tipe3: items.tipe3,
-                            //     harga: items.harga,
-                            //     kota_penjual: items.kota_penjual,
-                            //     kategori: items.kategori,
-                            //     stock: items.stock,
-                            //     sizeMin: items.sizeMin,
-                            //     sizeMax: items.sizeMax,
-                            //     keterangan: items.keterangan,
-                            //   })
-                            // }
+                            onPress={() =>
+                              navigation.navigate('Product', {
+                                id_barang: items.id_barang,
+                                nama_barang: items.nama_barang,
+                                foto1: items.foto1,
+                                tipe1: items.tipe1,
+                                foto2: items.foto2,
+                                tipe2: items.tipe2,
+                                foto3: items.foto3,
+                                tipe3: items.tipe3,
+                                harga: items.harga,
+                                kota_penjual: items.kota_penjual,
+                                kategori: items.kategori,
+                                stock: items.stock,
+                                sizeMin: items.sizeMin,
+                                sizeMax: items.sizeMax,
+                                keterangan: items.keterangan,
+                              })
+                            }
                             style={{
                               height: 30,
                               width: '100%',

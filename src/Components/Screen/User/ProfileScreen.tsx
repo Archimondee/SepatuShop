@@ -35,17 +35,20 @@ const ProfileScreen = (props: ProfileScreenProps) => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    _getData();
-    AsyncStorage.getItem('Profile').then((value: any) => {
-      let data = JSON.parse(value);
-      //console.log(value);
-      if (data != null) {
-        useNama(data.nama);
-        useFoto(data.foto);
-        useTipe(data.tipe_foto);
-      }
+    const unsubcribe = navigation.addListener('focus', () => {
+      _getData();
+      AsyncStorage.getItem('Profile').then((value: any) => {
+        let data = JSON.parse(value);
+        //console.log(value);
+        if (data != null) {
+          useNama(data.nama);
+          useFoto(data.foto);
+          useTipe(data.tipe_foto);
+        }
+      });
     });
-  }, []);
+    return () => unsubcribe();
+  }, [navigation]);
   const _getData = () => {
     AsyncStorage.getItem('username').then((value: any) => {
       if (value != '') {
