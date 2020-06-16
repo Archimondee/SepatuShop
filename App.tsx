@@ -41,6 +41,12 @@ import ProfileScreen from './src/Components/Screen/User/ProfileScreen';
 import ChangeScreen from './src/Components/Screen/User/ChangeScreen';
 import ProductScreen from './src/Components/Screen/Home/ProductScreen';
 import WishScreen from './src/Components/Screen/Market/WishScreen';
+import CartScreen from './src/Components/Screen/Market/CartScreen';
+import CheckoutScreen from './src/Components/Screen/Market/CheckoutScreen';
+import InformationScreen from './src/Components/Screen/Market/InformationScreen';
+import PesananScreen from './src/Components/Screen/Market/PesananScreen';
+import Transaksi1Screen from './src/Components/Screen/Market/Transaksi1Screen';
+import TransaksiScreen from './src/Components/Screen/Market/TransaksiScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -113,7 +119,7 @@ const TabNavigator = () => {
         },
       }}>
       <Tab.Screen name={'Home'} component={HomeScreen} />
-      <Tab.Screen name={'Pembelian'} component={HomeScreen} />
+      <Tab.Screen name={'Pembelian'} component={PesananScreen} />
       <Tab.Screen name={'Wishlist'} component={WishScreen} />
       <Tab.Screen name={'Account'} component={ProfileScreen} />
     </Tab.Navigator>
@@ -142,6 +148,16 @@ const MenuStack = () => {
       />
       <Stack.Screen name="ChangeScreen" component={ChangeScreen} />
       <Stack.Screen name="Product" component={ProductScreen} />
+      <Stack.Screen
+        options={{headerTitle: 'Cart'}}
+        name="cart"
+        component={CartScreen}
+      />
+      <Stack.Screen name="checkout" component={CheckoutScreen} />
+      <Stack.Screen name="information" component={InformationScreen} />
+
+      <Stack.Screen name="transaksi1" component={Transaksi1Screen} />
+      <Stack.Screen name="transaksi" component={TransaksiScreen} />
       {/* <Stack.Screen name="Wish" component/> */}
     </Stack.Navigator>
   );

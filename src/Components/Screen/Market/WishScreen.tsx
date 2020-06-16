@@ -45,10 +45,13 @@ const WishScreen = () => {
         })
           .then((response) => response.json())
           .then((responseJson) => {
-            if (responseJson !== 'Tidak Ada') {
+            console.log(responseJson);
+            console.log(data.user_id);
+            if (responseJson != 'Tidak ada') {
               useData(responseJson);
               useAda(true);
             } else {
+              useData([]);
               useAda(false);
             }
           });
@@ -97,6 +100,17 @@ const WishScreen = () => {
               }}>
               <Text>Tidak ada wishlist</Text>
             </View>
+          ) : data.length === 0 ? (
+            <View
+              style={{
+                paddingTop: 10,
+                paddingBottom: 10,
+                justifyContent: 'center',
+                alignContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text>Tidak ada wishlist</Text>
+            </View>
           ) : (
             data.map((items: any, i: number) => {
               return (
@@ -115,9 +129,7 @@ const WishScreen = () => {
                   </Left>
                   <Body>
                     <Text>{items.nama_barang}</Text>
-                    <Text note numberOfLines={1}>
-                      Rp. {items.harga}
-                    </Text>
+                    <Text numberOfLines={1}>Rp. {items.harga}</Text>
                   </Body>
                   <Right>
                     <Button
@@ -127,26 +139,25 @@ const WishScreen = () => {
                         justifyContent: 'center',
                         alignContent: 'center',
                       }}
-                      //   onPress={() =>
-                      //     this.props.navigation.navigate('Product', {
-                      //       id_barang: items.id_barang,
-                      //       nama_barang: items.nama_barang,
-                      //       foto1: items.foto1,
-                      //       tipe1: items.tipe1,
-                      //       foto2: items.foto2,
-                      //       tipe2: items.tipe2,
-                      //       foto3: items.foto3,
-                      //       tipe3: items.tipe3,
-                      //       harga: items.harga,
-                      //       kota_penjual: items.kota_penjual,
-                      //       kategori: items.kategori,
-                      //       stock: items.stock,
-                      //       sizeMin: items.sizeMin,
-                      //       sizeMax: items.sizeMax,
-                      //       keterangan: items.keterangan,
-                      //     })
-                      //   }>
-                    >
+                      onPress={() =>
+                        navigation.navigate('Product', {
+                          id_barang: items.id_barang,
+                          nama_barang: items.nama_barang,
+                          foto1: items.foto1,
+                          tipe1: items.tipe1,
+                          foto2: items.foto2,
+                          tipe2: items.tipe2,
+                          foto3: items.foto3,
+                          tipe3: items.tipe3,
+                          harga: items.harga,
+                          kota_penjual: items.kota_penjual,
+                          kategori: items.kategori,
+                          stock: items.stock,
+                          sizeMin: items.sizeMin,
+                          sizeMax: items.sizeMax,
+                          keterangan: items.keterangan,
+                        })
+                      }>
                       <Text style={{color: 'white'}}>View</Text>
                     </Button>
                   </Right>

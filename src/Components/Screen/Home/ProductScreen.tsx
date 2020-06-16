@@ -123,7 +123,8 @@ const ProductScreen = ({route}: any) => {
   };
 
   const remWishlist = () => {
-    fetch('http://simlabtiug.xyz/api_sepatu/remWish.php', {
+    console.log('Kehapus');
+    fetch('http://simlabtiug.xyz/api_sepatu/remWishlist.php', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -333,16 +334,17 @@ const ProductScreen = ({route}: any) => {
                 <View style={{paddingTop: 20}}>
                   <Button
                     block
-                    // onPress={() =>
-                    //   this.props.navigation.navigate('Cart', {
-                    //     id_barang: this.state.id_barang,
-                    //     nama_barang: this.state.nama_barang,
-                    //     harga: this.state.harga,
-                    //     foto_base641: this.state.foto_base641,
-                    //     tipe1: this.state.tipe1,
-                    //   })
-                    // }
-                  >
+                    onPress={
+                      () =>
+                        navigation.navigate('cart', {
+                          id_barang: id_barang,
+                          nama_barang: nama_barang,
+                          harga: harga,
+                          foto1: foto1,
+                          tipe1: tipe1,
+                        })
+                      // navigation.navigate('cart')
+                    }>
                     <Text style={{color: 'white'}}>Buy Now</Text>
                   </Button>
                 </View>
