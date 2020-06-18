@@ -47,6 +47,7 @@ import InformationScreen from './src/Components/Screen/Market/InformationScreen'
 import PesananScreen from './src/Components/Screen/Market/PesananScreen';
 import Transaksi1Screen from './src/Components/Screen/Market/Transaksi1Screen';
 import TransaksiScreen from './src/Components/Screen/Market/TransaksiScreen';
+import PenerimaScreen from './src/Components/Screen/Market/PenerimaScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -158,6 +159,7 @@ const MenuStack = () => {
 
       <Stack.Screen name="transaksi1" component={Transaksi1Screen} />
       <Stack.Screen name="transaksi" component={TransaksiScreen} />
+      <Stack.Screen name="penerima" component={PenerimaScreen} />
       {/* <Stack.Screen name="Wish" component/> */}
     </Stack.Navigator>
   );

@@ -33,12 +33,6 @@ const PesananScreen = ({navigation, route}: any) => {
           activeTabStyle={{backgroundColor: '#2f5aa4'}}>
           <PacketScreen />
         </Tab>
-        <Tab
-          heading="Selesai"
-          tabStyle={{backgroundColor: '#2f5aa4'}}
-          activeTabStyle={{backgroundColor: '#2f5aa4'}}>
-          <PacketScreen />
-        </Tab>
       </Tabs>
     </Container>
   );

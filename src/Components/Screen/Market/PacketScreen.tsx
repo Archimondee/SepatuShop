@@ -86,21 +86,19 @@ const PacketScreen = () => {
       });
     } else if (status_pembelian == '2') {
       console.log('2');
-      //   onPress={() =>
-      //     navigate('Penerima', {
-      //       id_pembelian: items.id_pembelian,
-      //       id_barang: items.id_barang,
-      //       nama_barang: items.nama_barang,
-      //       user_id: items.user_id,
-      //       nama_pembeli: items.nama_pembeli,
-      //       harga: items.harga,
-      //       foto_barang: items.foto_barang,
-      //       tipe_foto: items.tipe_foto,
-      //       alamat: items.alamat,
-      //       pesan: items.pesan,
-      //       status_pembelian: items.status_pembelian,
-      //     })
-      //   }
+      navigation.navigate('penerima', {
+        id_pembelian: items.id_pembelian,
+        id_barang: items.id_barang,
+        nama_barang: items.nama_barang,
+        user_id: items.user_id,
+        nama_pembeli: items.nama_pembeli,
+        harga: items.harga,
+        foto_barang: items.foto_barang,
+        tipe_foto: items.tipe_foto,
+        alamat: items.alamat,
+        pesan: items.pesan,
+        status_pembelian: items.status_pembelian,
+      });
     }
   };
   return (

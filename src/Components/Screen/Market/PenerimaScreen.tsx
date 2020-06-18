@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity, Dimensions, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  Image,
+  Alert,
+} from 'react-native';
 import {
   Container,
   Header,
@@ -19,9 +26,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-interface Transaksi1ScreenProps {}
+interface PenerimaScreenProps {}
 
-const Transaksi1Screen = ({route}: any) => {
+const PenerimaScreen = ({route}: any) => {
   const {
     id_pembelian,
     id_barang,
@@ -39,10 +46,13 @@ const Transaksi1Screen = ({route}: any) => {
   const [bank_rek, useBank_rek] = useState('');
   const [data, useData] = useState([]);
   const navigation = useNavigation();
+
   useEffect(() => {
     _getRekening();
   }, []);
+
   const _getRekening = () => {
+    //const {id_pembelian} = this.state;
     fetch('http://simlabtiug.xyz/api_sepatu/getRek.php', {
       method: 'POST',
       headers: {
@@ -55,12 +65,37 @@ const Transaksi1Screen = ({route}: any) => {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        // this.setState({
-        //   data: responseJson,
-        // });
         useData(responseJson);
       });
   };
+
+  const _submit = () => {
+    //const {id_pembelian, id_barang} = this.state;
+    console.log(id_pembelian);
+    console.log(id_barang);
+    fetch('http://simlabtiug.xyz/api_sepatu/changeStatusOrd.php', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id_pembelian: id_pembelian,
+        id_barang: id_barang,
+      }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson == 'Diterima') {
+          Alert.alert('Barang telah diterima \nTerimakasih telah berbelanja');
+          //this.props.navigation.navigate('Pesanan');
+          navigation.goBack();
+        } else {
+          Alert.alert('Terjadi kesalahan');
+        }
+      });
+  };
+
   const pindah = () => {
     console.log('Pindah pindahhh');
     navigation.goBack();
@@ -74,16 +109,15 @@ const Transaksi1Screen = ({route}: any) => {
           </TouchableOpacity>
         </Left>
         <Body>
-          <Text style={{color: 'white'}}>Lihat Bukti Transaksi</Text>
+          <Text style={{color: 'white'}}>Penerimaan Barang</Text>
         </Body>
         <Right />
       </Header>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
             paddingBottom: 5,
             marginBottom: 5,
-            paddingTop: 10,
             padding: 10,
           }}>
           <Card style={{height: 300}}>
@@ -185,7 +219,7 @@ const Transaksi1Screen = ({route}: any) => {
                       <Item>
                         <Input
                           disabled
-                          onChangeText={(no_rek) => useNo_rek(no_rek)}
+                          onChangeText={(no_rek) => useState(no_rek)}
                           placeholder="No Rekening"
                           defaultValue={items.no_rekening}
                         />
@@ -193,7 +227,7 @@ const Transaksi1Screen = ({route}: any) => {
                       <Item>
                         <Input
                           disabled
-                          onChangeText={(nama_rek) => useNama_rek(nama_rek)}
+                          onChangeText={(nama_rek) => useState(nama_rek)}
                           placeholder="Nama Rekening"
                           defaultValue={items.nama_rekening}
                         />
@@ -201,7 +235,7 @@ const Transaksi1Screen = ({route}: any) => {
                       <Item>
                         <Input
                           disabled
-                          onChangeText={(bank_rek) => useBank_rek(bank_rek)}
+                          onChangeText={(bank_rek) => useState(bank_rek)}
                           placeholder="Nama Bank"
                           defaultValue={items.bank_penerima}
                         />
@@ -217,7 +251,27 @@ const Transaksi1Screen = ({route}: any) => {
                     alignItems: 'center',
                     alignContent: 'center',
                     alignSelf: 'center',
-                  }}></View>
+                  }}>
+                  <View
+                    style={{
+                      paddingTop: 15,
+                      width: '100%',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      alignContent: 'center',
+                      alignSelf: 'center',
+                    }}>
+                    <Button
+                      onPress={() => _submit()}
+                      style={{
+                        width: '90%',
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                      }}>
+                      <Text style={{color: 'white'}}>Submit</Text>
+                    </Button>
+                  </View>
+                </View>
               </View>
             </View>
           </Card>
@@ -227,4 +281,4 @@ const Transaksi1Screen = ({route}: any) => {
   );
 };
 
-export default Transaksi1Screen;
+export default PenerimaScreen;
